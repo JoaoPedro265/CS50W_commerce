@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h1>Categories</h1><br>
+<ul>
+{% for item in object %}
+  <a href="{% url "categories_list" nome_id=item.id %}" style="text-decoration: none" method="POST">
+    <li>{{item.nome_cate}}</li>
+  </a>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

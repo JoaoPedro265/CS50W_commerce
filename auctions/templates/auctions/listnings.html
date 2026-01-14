@@ -1,0 +1,80 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<!--ALERT-->
+{% for item in messages %}
+        {% if item.tags == 'error' %}
+            <div class="alert alert-danger" role="alert">
+                {{item}}
+              </div>
+            {% else %}
+            <div class="alert alert-success" role="alert">
+                {{item}}
+              </div>
+        {% endif %}
+{% endfor %}
+<!--Encerrar listning-->
+{% if verif_user == False%}<!--usuario igual-->
+<form action="{% url "listning" nome_id=listning.pk %}"method="POST"> {% csrf_token %}
+    <button type="submit" class="btn btn-danger" name="close_listing">Close auction</button>
+    <button type="submit" class="btn btn-danger" name="Open_listing">Open auction</button><br>
+</form>
+{% endif %}
+<!--Mostrar vencedor-->
+{% if not listning.ativo %}<!--status desligado-->
+    {% if vencedor.lancador == request.user%}<!--usuario igual-->
+    <div class="alert alert-success">
+        <strong>Congratulations {{vencedor.lancador}}, you won this auction with a bid of ${{vencedor.valor_lancado}}!</strong>
+    </div>
+    {% endif %}
+{% endif %}
+
+
+<!--listining-->
+<div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+    <h1><strong>{{ listning.nome_item }}</strong></h1>
+    <div class="media mb-4">
+        <img src="{{listning.imagemURL}}" class="mr-3" alt="" style="width: 250px; height: 218px;">
+        <div class="media-body">
+            {% if not listning.ativo %}
+                <h3><strong class="border border-danger">closed auction</strong></h3>
+            {% endif %}
+            <br><strong>Creator:</strong> {{ listning.criador }}
+            <br><strong>Starting bid:</strong> ${{ listning.lance_atual }}
+            {% if valor_lancado %}
+                <br><strong>Current bid:</strong> ${{ valor_lancado.valor_lancado }}
+            {% else %} 
+                <br><strong>Current bid:</strong> no Bid
+            {% endif %}
+            <br><strong>Category:</strong> {{ listning.categoria }}
+            <br><strong>Description:</strong> {{ listning.descricao }}<br>
+            <br><strong>Comments:</strong>
+            {% if comment %}
+            <ul style="padding-left: 10px; list-style-type: disc; list-style-position: inside;">
+                {% for item in comment %}
+                    <li style="margin-left: 5px;">{{ item.coment }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <br>no comments added
+            {% endif %}
+                
+        </div>
+    </div>
+</div>
+{% if verif_user == True %}
+<!--Bid/comments-->
+<form action="{% url "listning" nome_id=listning.pk %}" method="POST"> {% csrf_token %}
+    <button type="submit" class="btn btn-primary" name="add_watchlist">Add to Watchlist</button>
+    <button type="submit" class="btn btn-primary" name="remove_watchlist">remove_watchlist</button><br>
+    <!--bid-->
+    <br>Place bid:
+    <br><input type="number" name="bid_Text" placeholder="bid" class="form-control" style="width:40%">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <!--comments-->
+    <br>Comments:
+    <br><textarea class="form-control" name="coment_Text" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endif %}
+{% endblock %}

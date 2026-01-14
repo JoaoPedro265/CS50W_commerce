@@ -1,0 +1,45 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% for item in messages %}
+        {% if item.tags == 'success' %}
+            <div class="alert alert-success" role="alert">
+                {{item}}
+            </div>
+        {% endif %}
+{% endfor %}
+      <!-- Corrigido para `nome_item` conforme definido no modelo -->
+    {% for item in produtos %}
+        <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+            <h1>
+                <strong>
+                    <a href="{% url "listning" nome_id=item.pk %}" style="text-decoration: none" method="GET">
+                        {{ item.nome_item }}
+                    </a>
+                </strong>
+            </h1>
+            <div class="media mb-4">
+                <img src="{{item.imagemURL}}" class="mr-3" alt="" style="width: 250px; height: 218px;">
+                <div class="media-body">
+                    {% if item.ativo%}
+                    {% else %}
+                    <h3><strong class="border border-danger">closed auction</strong></h3>
+                    {% endif %}
+                    <strong>Creator:</strong> {{ item.criador }}
+                    <br><strong>Starting bid:</strong> ${{ item.lance_atual }}
+                    {% if item.lance_maior %}
+                    <br><strong>Current bid:</strong> ${{item.lance_maior}}
+                    {% else %}
+                    <br><strong>Current bid:</strong> no Bid
+                    {% endif %}
+                    <br><strong>Category:</strong> {{ item.categoria }}
+                    <br><strong>Description:</strong> {{ item.descricao }}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+    <ul>
+        <li>No listings available.</li>
+    </ul>
+    {% endfor %}
+{% endblock %}

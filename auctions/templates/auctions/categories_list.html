@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% for item in list %}
+<div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+    <h1>
+        <strong>
+            <a href="{% url "listning" nome_id=item.pk %}" style="text-decoration: none" method="GET">
+                {{ item.nome_item }}
+            </a>
+        </strong>
+    </h1>
+    <div class="media mb-4">
+        <img src="{{item.imagemURL}}" class="mr-3" alt="Nome do Item" style="width: 200px;">
+        <div class="media-body">
+            <br><strong>Criador:</strong> {{ item.criador }}
+            <br><strong>Lance Atual:</strong> {{ item.lance_atual }}
+            <br><strong>Categoria:</strong> {{ item.categoria }}
+            <br><strong>descricao:</strong> {{ item.descricao }}
+        </div>
+    </div>
+</div>
+{% empty %}
+<ul>
+    <li>No listings available.</li>
+</ul>
+{% endfor %}
+{% endblock %}
