@@ -1,4 +1,12 @@
+<img style="100%" src="https://capsule-render.vercel.app/api?type=waving&height=120&section=header&fontColor=FFFFFF&theme=cobalt" />
+
+<h1 align="left">⚖️ Commerce - Plataforma de Leilões (CS50W)</h1>
+
+<p align="left">
+Uma aplicação robusta de e-commerce baseada em leilões, desenvolvida com <strong>Django</strong>. Este projeto foca na lógica de backend para gerenciar transações em tempo real, estados de anúncios e interações entre usuários autenticados.
 </p>
+
+###
 
 <h2 align="left">🚀 Funcionalidades Principais</h2>
 
