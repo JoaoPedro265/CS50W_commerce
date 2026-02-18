@@ -42,7 +42,7 @@ O coração deste projeto é a relação entre modelos no SQLite/PostgreSQL:
 <h2 align="left">📺 Demonstração em Vídeo</h2>
 
 <div align="center">
-  []
 
-  <p><i>D</i></p>
-</div>
+https://github.com/user-attachments/assets/3b7d4622-4170-4a03-99fc-895eb0e018f0
+
+  <br />
