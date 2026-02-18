@@ -46,3 +46,11 @@ O coração deste projeto é a relação entre modelos no SQLite/PostgreSQL:
 https://github.com/user-attachments/assets/3b7d4622-4170-4a03-99fc-895eb0e018f0
 
   <br />
+  <p>
+    <a href="https://youtu.be/Z-McM0AQdw0" target="_blank">
+      <strong>🚀 <i>Confira a demonstração no YouTube:</i></strong>
+    </a>
+  </p>
+</div>
+
+---
