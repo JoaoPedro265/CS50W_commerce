@@ -39,3 +39,10 @@ O coração deste projeto é a relação entre modelos no SQLite/PostgreSQL:
 <div align="left">
 <img src="https://skillicons.dev/icons?i=py,django,html,css,sqlite" height="40" />
 </div>
+<h2 align="left">📺 Demonstração em Vídeo</h2>
+
+<div align="center">
+  []
+
+  <p><i>D</i></p>
+</div>
